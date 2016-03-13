@@ -1,13 +1,11 @@
 class Bounce
-  attr_reader :position, :velocity
-
   def initialize position, velocity
     @position = position
     @velocity = velocity
   end
 
   def lower_position
-    @position.lower
+    position.lower
   end
 
   def update
@@ -15,17 +13,24 @@ class Bounce
     bounce if out_of_bounds?
   end
 
+  protected
+
+  attr_reader :velocity
+
   private
 
+  attr_reader :position
+  attr_writer :velocity
+
   def bounce
-    @velocity *= -1
+    self.velocity *= -1
   end
 
   def move
-    @position.center += @velocity
+    position.advance velocity
   end
 
   def out_of_bounds?
-    @position.out_of_bounds?
+    position.out_of_bounds?
   end
 end
