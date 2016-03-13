@@ -7,6 +7,22 @@ class WhackARuby < Gosu::Window
     self.caption = 'Whack the Ruby!'
   end
 
+  def lower_x
+    0
+  end
+
+  def lower_y
+    0
+  end
+
+  def upper_x
+    width
+  end
+
+  def upper_y
+    height
+  end
+
   private
 
   def draw
@@ -14,11 +30,11 @@ class WhackARuby < Gosu::Window
   end
 
   def update
-    ruby.update width, height
+    ruby.update
   end
 
   def ruby
-    @ruby ||= Ruby.new
+    @ruby ||= Ruby.new self
   end
 
   def height

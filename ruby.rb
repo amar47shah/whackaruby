@@ -2,19 +2,20 @@ require 'gosu'
 require_relative './motion'
 
 class Ruby < Gosu::Image
-  def initialize
+  def initialize window
     super 'ruby.png'
+    @window = window
   end
 
   def draw
     super lower_x, lower_y, 1
   end
 
-  def update window_width, window_height
+  def update
     x.update
     y.update
-    x.flip if x_out_of_bounds? window_width
-    y.flip if y_out_of_bounds? window_height
+    x.flip if x_out_of_bounds?
+    y.flip if y_out_of_bounds?
   end
 
   def x
@@ -26,6 +27,8 @@ class Ruby < Gosu::Image
   end
 
   private
+
+  attr_reader :window
 
   def height
     43
@@ -59,15 +62,15 @@ class Ruby < Gosu::Image
     center + dimension / 2
   end
 
-  def x_out_of_bounds? width
-    out_of_bounds? lower_x, upper_x, width
+  def x_out_of_bounds?
+    out_of_bounds? lower_x, upper_x, window.lower_x, window.upper_x
   end
 
-  def y_out_of_bounds? height
-    out_of_bounds? lower_y, upper_y, height
+  def y_out_of_bounds?
+    out_of_bounds? lower_y, upper_y, window.lower_y, window.upper_y
   end
 
-  def out_of_bounds? lower_coordinate, upper_coordinate, upper_bound
-    lower_coordinate < 0 || upper_coordinate > upper_bound
+  def out_of_bounds? lower_coordinate, upper_coordinate, lower_bound, upper_bound
+    lower_coordinate < lower_bound || upper_coordinate > upper_bound
   end
 end
