@@ -17,11 +17,11 @@ class Ruby < Gosu::Image
   end
 
   def x
-    @x ||= Bounce.new initial_x_position, 5
+    @x ||= Bounce.new initial_x_position, initial_speed
   end
 
   def y
-    @y ||= Bounce.new initial_y_position, 5
+    @y ||= Bounce.new initial_y_position, initial_speed
   end
 
   private
@@ -42,5 +42,9 @@ class Ruby < Gosu::Image
 
   def initial_y_position
     Position.new 200, height, window.lower_y, window.upper_y
+  end
+
+  def initial_speed
+    5
   end
 end
