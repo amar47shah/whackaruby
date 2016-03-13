@@ -6,7 +6,7 @@ class Motion
     @velocity = velocity
   end
 
-  def update
+  def move
     @position += @velocity
   end
 

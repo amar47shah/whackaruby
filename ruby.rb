@@ -12,8 +12,8 @@ class Ruby < Gosu::Image
   end
 
   def update
-    x.update
-    y.update
+    x.move
+    y.move
     x.flip if x_out_of_bounds?
     y.flip if y_out_of_bounds?
   end
