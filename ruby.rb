@@ -6,13 +6,15 @@ class Ruby < Gosu::Image
   end
 
   def draw x, y, z
-    super coordinate(x, width), coordinate(y, height), z
+    super coordinate_x(x), coordinate_y(y), z
   end
 
-  private
+  def coordinate_x x
+    coordinate x, width
+  end
 
-  def coordinate position, distance
-    position - distance / 2
+  def coordinate_y y
+    coordinate y, height
   end
 
   def height
@@ -21,5 +23,11 @@ class Ruby < Gosu::Image
 
   def width
     50
+  end
+
+  private
+
+  def coordinate position, distance
+    position - distance / 2
   end
 end
