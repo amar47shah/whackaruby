@@ -5,7 +5,7 @@ require_relative './visibility'
 
 class Ruby < Gosu::Image
   def initialize window
-    super 'ruby.png'
+    super 'img/ruby.png'
     @window = window
   end
 
