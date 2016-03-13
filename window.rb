@@ -1,4 +1,5 @@
 require 'gosu'
+require_relative './hammer'
 require_relative './ruby'
 
 class Window < Gosu::Window
@@ -26,15 +27,19 @@ class Window < Gosu::Window
   private
 
   def draw
-    ruby.draw
+    [hammer, ruby].each(&:draw)
   end
 
-  def update
-    ruby.update
+  def hammer
+    @hammer ||= Hammer.new self
   end
 
   def ruby
     @ruby ||= Ruby.new self
+  end
+
+  def update
+    ruby.update
   end
 
   def height
