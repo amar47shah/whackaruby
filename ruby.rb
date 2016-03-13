@@ -1,7 +1,7 @@
 require 'gosu'
 
 class Ruby < Gosu::Image
-  attr_writer :x, :y
+  attr_writer :x, :y, :velocity_x, :velocity_y
 
   def initialize
     super 'ruby.png'
@@ -41,6 +41,14 @@ class Ruby < Gosu::Image
 
   def upper_y
     upper y, height
+  end
+
+  def velocity_x
+    @velocity_x ||= 5
+  end
+
+  def velocity_y
+    @velocity_y ||= 5
   end
 
   private
