@@ -1,4 +1,6 @@
 class Position
+  attr_reader :point
+
   def initialize point, range, proportion, lower_bound, upper_bound
     @point = point
     @range = range
@@ -22,10 +24,6 @@ class Position
   def out_of_bounds?
     lower < lower_bound || upper > upper_bound
   end
-
-  protected
-
-  attr_reader :point
 
   private
 

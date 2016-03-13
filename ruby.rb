@@ -14,6 +14,10 @@ class Ruby < Gosu::Image
     super x.lower_position, y.lower_position, 1
   end
 
+  def distance other_x, other_y
+    Gosu.distance other_x, other_y, x.point, y.point
+  end
+
   def update
     [x, y, visibility].each(&:update)
   end

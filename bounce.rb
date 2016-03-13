@@ -8,6 +8,10 @@ class Bounce
     position.lower
   end
 
+  def point
+    position.point
+  end
+
   def update
     move
     bounce if out_of_bounds?
