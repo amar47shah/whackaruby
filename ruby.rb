@@ -1,5 +1,6 @@
 require 'gosu'
 require_relative './motion'
+require_relative './position'
 
 class Ruby < Gosu::Image
   def initialize window
@@ -8,22 +9,19 @@ class Ruby < Gosu::Image
   end
 
   def draw
-    super lower_x, lower_y, 1
+    super x.lower_position, y.lower_position, 1
   end
 
   def update
-    x.move
-    y.move
-    x.flip if x_out_of_bounds?
-    y.flip if y_out_of_bounds?
+    [x, y].each(&:update)
   end
 
   def x
-    @x ||= Motion.new 200, 5
+    @x ||= Motion.new initial_x_position, 5
   end
 
   def y
-    @y ||= Motion.new 200, 5
+    @y ||= Motion.new initial_y_position, 5
   end
 
   private
@@ -38,39 +36,11 @@ class Ruby < Gosu::Image
     50
   end
 
-  def lower_x
-    lower x.position, width
+  def initial_x_position
+    Position.new 200, width, window.lower_x, window.upper_x
   end
 
-  def upper_x
-    upper x.position, width
-  end
-
-  def lower_y
-    lower y.position, height
-  end
-
-  def upper_y
-    upper y.position, height
-  end
-
-  def lower center, dimension
-    center - dimension / 2
-  end
-
-  def upper center, dimension
-    center + dimension / 2
-  end
-
-  def x_out_of_bounds?
-    out_of_bounds? lower_x, upper_x, window.lower_x, window.upper_x
-  end
-
-  def y_out_of_bounds?
-    out_of_bounds? lower_y, upper_y, window.lower_y, window.upper_y
-  end
-
-  def out_of_bounds? lower_coordinate, upper_coordinate, lower_bound, upper_bound
-    lower_coordinate < lower_bound || upper_coordinate > upper_bound
+  def initial_y_position
+    Position.new 200, height, window.lower_y, window.upper_y
   end
 end
