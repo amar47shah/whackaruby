@@ -1,21 +1,22 @@
 class Position
-  def initialize center, range, lower_bound, upper_bound
-    @center = center
+  def initialize point, range, proportion, lower_bound, upper_bound
+    @point = point
     @range = range
+    @proportion = proportion
     @lower_bound = lower_bound
     @upper_bound = upper_bound
   end
 
   def advance distance
-    self.center += distance
+    self.point += distance
   end
 
   def lower
-    center - range / 2
+    point - range * proportion
   end
 
   def upper
-    center + range / 2
+    point + range * (1 - proportion)
   end
 
   def out_of_bounds?
@@ -24,10 +25,10 @@ class Position
 
   protected
 
-  attr_reader :center
+  attr_reader :point
 
   private
 
-  attr_reader :range, :lower_bound, :upper_bound
-  attr_writer :center
+  attr_reader :range, :proportion, :lower_bound, :upper_bound
+  attr_writer :point
 end

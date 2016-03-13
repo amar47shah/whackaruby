@@ -43,11 +43,11 @@ class Ruby < Gosu::Image
   end
 
   def initial_x_position
-    Position.new 200, width, window.lower_x, window.upper_x
+    Position.new 200, width, 0.5, window.lower_x, window.upper_x
   end
 
   def initial_y_position
-    Position.new 200, height, window.lower_y, window.upper_y
+    Position.new 200, height, 0.5, window.lower_y, window.upper_y
   end
 
   def initial_speed
