@@ -11,8 +11,9 @@ class WhackARuby < Gosu::Window
     image.draw x, y, 1
   end
 
-  def image
-    @image ||= Ruby.new
+  def update
+    self.x += velocity_x
+    self.y += velocity_y
   end
 
   def x
@@ -21,6 +22,22 @@ class WhackARuby < Gosu::Window
 
   def y
     @y ||= 200
+  end
+
+  private
+
+  attr_writer :x, :y
+
+  def image
+    @image ||= Ruby.new
+  end
+
+  def velocity_x
+    5
+  end
+
+  def velocity_y
+    5
   end
 end
 
