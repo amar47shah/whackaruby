@@ -11,6 +11,13 @@ class Ruby < Gosu::Image
     super lower_x, lower_y, 1
   end
 
+  def update window_width, window_height
+    self.x += velocity_x
+    self.y += velocity_y
+    self.velocity_x *= -1 if x_out_of_bounds? window_width
+    self.velocity_y *= -1 if y_out_of_bounds? window_height
+  end
+
   def x
     @x ||= 200
   end
@@ -49,6 +56,18 @@ class Ruby < Gosu::Image
 
   def velocity_y
     @velocity_y ||= 5
+  end
+
+  def x_out_of_bounds? width
+    out_of_bounds? lower_x, upper_x, width
+  end
+
+  def y_out_of_bounds? height
+    out_of_bounds? lower_y, upper_y, height
+  end
+
+  def out_of_bounds? lower, upper, upper_bound
+    lower < 0 || upper > upper_bound
   end
 
   private
