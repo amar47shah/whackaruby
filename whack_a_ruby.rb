@@ -1,16 +1,26 @@
 require 'gosu'
+require_relative './ruby'
 
 class WhackARuby < Gosu::Window
   def initialize
     super 800, 600
     self.caption = 'Whack the Ruby!'
-    @image = Gosu::Image.new 'ruby.png'
-    @x, @y = 200, 200
-    @width, @height = 50, 43
   end
 
   def draw
-    @image.draw(@x - @width / 2, @y - @height / 2, 1)
+    image.draw x, y, 1
+  end
+
+  def image
+    @image ||= Ruby.new
+  end
+
+  def x
+    @x ||= 200
+  end
+
+  def y
+    @y ||= 200
   end
 end
 
