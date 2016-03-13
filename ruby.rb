@@ -1,12 +1,22 @@
 require 'gosu'
 
 class Ruby < Gosu::Image
+  attr_writer :x, :y
+
   def initialize
     super 'ruby.png'
   end
 
-  def draw x, y, z
-    super lower_x(x), lower_y(y), z
+  def draw
+    super lower_x, lower_y, 1
+  end
+
+  def x
+    @x ||= 200
+  end
+
+  def y
+    @y ||= 200
   end
 
   def height
@@ -17,19 +27,19 @@ class Ruby < Gosu::Image
     50
   end
 
-  def lower_x x
+  def lower_x
     lower x, width
   end
 
-  def upper_x x
+  def upper_x
     upper x, width
   end
 
-  def lower_y y
+  def lower_y
     lower y, height
   end
 
-  def upper_y y
+  def upper_y
     upper y, height
   end
 

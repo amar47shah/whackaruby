@@ -7,14 +7,6 @@ class WhackARuby < Gosu::Window
     self.caption = 'Whack the Ruby!'
   end
 
-  def x
-    @x ||= 200
-  end
-
-  def y
-    @y ||= 200
-  end
-
   def velocity_x
     @velocity_x ||= 5
   end
@@ -25,15 +17,15 @@ class WhackARuby < Gosu::Window
 
   private
 
-  attr_writer :x, :y, :velocity_x, :velocity_y
+  attr_writer :velocity_x, :velocity_y
 
   def draw
-    image.draw x, y, 1
+    image.draw
   end
 
   def update
-    self.x += velocity_x
-    self.y += velocity_y
+    image.x += velocity_x
+    image.y += velocity_y
     self.velocity_x *= -1 if x_out_of_bounds?
     self.velocity_y *= -1 if y_out_of_bounds?
   end
@@ -51,11 +43,11 @@ class WhackARuby < Gosu::Window
   end
 
   def x_out_of_bounds?
-    out_of_bounds? image.lower_x(x), image.upper_x(x), width
+    out_of_bounds? image.lower_x, image.upper_x, width
   end
 
   def y_out_of_bounds?
-    out_of_bounds? image.lower_y(y), image.upper_y(y), height
+    out_of_bounds? image.lower_y, image.upper_y, height
   end
 
   def out_of_bounds? lower, upper, upper_bound
