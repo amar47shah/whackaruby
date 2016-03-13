@@ -1,6 +1,7 @@
 require 'gosu'
 require_relative './bounce'
 require_relative './position'
+require_relative './visibility'
 
 class Ruby < Gosu::Image
   def initialize window
@@ -9,11 +10,16 @@ class Ruby < Gosu::Image
   end
 
   def draw
+    return unless visibility.on?
     super x.lower_position, y.lower_position, 1
   end
 
   def update
-    [x, y].each(&:update)
+    [x, y, visibility].each(&:update)
+  end
+
+  def visibility
+    @visibility ||= Visibility.new
   end
 
   def x
