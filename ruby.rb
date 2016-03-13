@@ -18,6 +18,10 @@ class Ruby < Gosu::Image
     [x, y, visibility].each(&:update)
   end
 
+  private
+
+  attr_reader :window
+
   def visibility
     @visibility ||= Visibility.new
   end
@@ -29,10 +33,6 @@ class Ruby < Gosu::Image
   def y
     @y ||= Bounce.new initial_y_position, initial_speed
   end
-
-  private
-
-  attr_reader :window
 
   def height
     43
