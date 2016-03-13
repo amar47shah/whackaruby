@@ -10,15 +10,15 @@ class WhackARuby < Gosu::Window
   private
 
   def draw
-    image.draw
+    ruby.draw
   end
 
   def update
-    image.update width, height
+    ruby.update width, height
   end
 
-  def image
-    @image ||= Ruby.new
+  def ruby
+    @ruby ||= Ruby.new
   end
 
   def height
