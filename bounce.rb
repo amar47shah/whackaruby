@@ -1,4 +1,4 @@
-class Motion
+class Bounce
   attr_reader :position, :velocity
 
   def initialize position, velocity
@@ -12,12 +12,12 @@ class Motion
 
   def update
     move
-    flip if out_of_bounds?
+    bounce if out_of_bounds?
   end
 
   private
 
-  def flip
+  def bounce
     @velocity *= -1
   end
 

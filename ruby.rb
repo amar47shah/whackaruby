@@ -1,5 +1,5 @@
 require 'gosu'
-require_relative './motion'
+require_relative './bounce'
 require_relative './position'
 
 class Ruby < Gosu::Image
@@ -17,11 +17,11 @@ class Ruby < Gosu::Image
   end
 
   def x
-    @x ||= Motion.new initial_x_position, 5
+    @x ||= Bounce.new initial_x_position, 5
   end
 
   def y
-    @y ||= Motion.new initial_y_position, 5
+    @y ||= Bounce.new initial_y_position, 5
   end
 
   private
