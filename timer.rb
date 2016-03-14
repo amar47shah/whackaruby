@@ -1,8 +1,9 @@
 require 'gosu'
 
 class Timer
-  def initialize window
+  def initialize window, start
     @window = window
+    @start = start
   end
 
   def draw
@@ -21,7 +22,7 @@ class Timer
 
   private
 
-  attr_reader :window
+  attr_reader :window, :start
 
   def allowed
     100
@@ -38,7 +39,7 @@ class Timer
   end
 
   def elapsed
-    Gosu.milliseconds / 1000
+    (Gosu.milliseconds - start) / 1000
   end
 
   def font

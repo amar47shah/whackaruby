@@ -12,6 +12,10 @@ class Window < Gosu::Window
               upper_x, upper_y, color, lower_x, upper_y, color
   end
 
+  def clear
+    burst Gosu::Color::NONE
+  end
+
   def lower_x
     0
   end
@@ -28,6 +32,10 @@ class Window < Gosu::Window
     (upper_y - lower_y) / 2
   end
 
+  def end_game
+    self.game = nil
+  end
+
   def upper_x
     width
   end
@@ -38,8 +46,13 @@ class Window < Gosu::Window
 
   private
 
+  attr_writer :game
+
   def button_down id
-    game.handle_click if id == Gosu::MsLeft
+    case id
+    when Gosu::MsLeft  then game.handle_click
+    when Gosu::KbSpace then game.handle_space
+    end
   end
 
   def draw

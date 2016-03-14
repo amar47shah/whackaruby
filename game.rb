@@ -1,3 +1,4 @@
+require 'gosu'
 require_relative './hammer'
 require_relative './ruby'
 require_relative './score'
@@ -9,6 +10,7 @@ class Game
   end
 
   def draw
+    window.clear
     [hammer, ruby, score, timer].each(&:draw)
   end
 
@@ -16,6 +18,11 @@ class Game
     return if finished?
     score.adjust hit?
     hammer.swing hit?
+  end
+
+  def handle_space
+    return unless finished?
+    window.end_game
   end
 
   def update
@@ -48,6 +55,6 @@ class Game
   end
 
   def timer
-    @timer ||= Timer.new window
+    @timer ||= Timer.new window, Gosu.milliseconds
   end
 end
