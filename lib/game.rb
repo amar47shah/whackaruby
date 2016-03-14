@@ -10,7 +10,6 @@ class Game
   end
 
   def draw
-    window.clear
     [hammer, ruby, score, timer].each(&:draw)
   end
 

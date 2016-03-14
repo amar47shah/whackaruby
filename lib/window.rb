@@ -12,10 +12,6 @@ class Window < Gosu::Window
               upper_x, upper_y, color, lower_x, upper_y, color
   end
 
-  def clear
-    burst Gosu::Color::NONE
-  end
-
   def lower_x
     0
   end
