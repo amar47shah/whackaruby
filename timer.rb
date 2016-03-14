@@ -7,7 +7,7 @@ class Timer
 
   def draw
     draw_counter
-    draw_game_over if finished?
+    draw_end if finished?
   end
 
   def finished?
@@ -31,8 +31,10 @@ class Timer
     font.draw remaining, window.lower_x + 80, window.lower_y + 20, 2
   end
 
-  def draw_game_over
-    font.draw 'Game Over', window.center_x - 70, window.center_y, 3
+  def draw_end
+    font.draw 'Game Over', window.center_x - 70, window.center_y - 30, 3
+    font.draw 'Press SPACE to Play Again',
+              window.center_x - 175, window.center_y + 20, 3
   end
 
   def elapsed
