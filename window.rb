@@ -8,7 +8,7 @@ class Window < Gosu::Window
     self.caption = 'Whack the Ruby!'
   end
 
-  def flash color
+  def burst color
     draw_quad lower_x, lower_y, color, upper_x, lower_y, color,
               upper_x, upper_y, color, lower_x, upper_y, color
   end
@@ -35,7 +35,7 @@ class Window < Gosu::Window
 
   def button_down id
     return unless id == Gosu::MsLeft
-    hammer.register hit?
+    hammer.swing hit?
   end
 
   def draw

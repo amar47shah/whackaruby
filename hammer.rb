@@ -1,34 +1,34 @@
 require 'gosu'
-require_relative './click'
+require_relative './flash'
 
 class Hammer < Gosu::Image
   def initialize window
     super 'img/hammer.png'
     @window = window
-    reset_click
+    reset_flash
   end
 
   def draw
     super x.lower, y.lower, 1
-    handle_click
+    handle_flash
   end
 
-  def register try
-    self.click = Click.new try
+  def swing hit_or_miss
+    self.flash = Flash.new hit_or_miss
   end
 
   private
 
-  attr_accessor :click
+  attr_accessor :flash
   attr_reader :window
 
-  def handle_click
-    window.flash click.color
-    reset_click
+  def handle_flash
+    window.burst flash.color
+    reset_flash
   end
 
-  def reset_click
-    register nil
+  def reset_flash
+    swing nil
   end
 
   def x
