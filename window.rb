@@ -2,6 +2,7 @@ require 'gosu'
 require_relative './hammer'
 require_relative './ruby'
 require_relative './score'
+require_relative './timer'
 
 class Window < Gosu::Window
   def initialize
@@ -39,7 +40,7 @@ class Window < Gosu::Window
   end
 
   def draw
-    [hammer, ruby, score].each(&:draw)
+    [hammer, ruby, score, timer].each(&:draw)
   end
 
   def hammer
@@ -61,6 +62,10 @@ class Window < Gosu::Window
 
   def score
     @score ||= Score.new self
+  end
+
+  def timer
+    @timer ||= Timer.new self
   end
 
   def update
