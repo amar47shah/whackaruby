@@ -1,4 +1,4 @@
-require_relative './window'
+require_relative 'lib/window'
 
 window = Window.new
 window.show
