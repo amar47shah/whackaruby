@@ -31,8 +31,6 @@ class Window < Gosu::Window
 
   private
 
-  attr_accessor :click
-
   def button_down id
     return unless id == Gosu::MsLeft
     hammer.swing hit?
