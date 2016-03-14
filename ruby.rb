@@ -4,9 +4,10 @@ require_relative './position'
 require_relative './visibility'
 
 class Ruby < Gosu::Image
-  def initialize window
+  def initialize window, timer
     super 'img/ruby.png'
     @window = window
+    @timer = timer
   end
 
   def distance other_x, other_y
@@ -24,7 +25,7 @@ class Ruby < Gosu::Image
 
   private
 
-  attr_reader :window
+  attr_reader :window, :timer
 
   def height
     43
@@ -43,7 +44,7 @@ class Ruby < Gosu::Image
   end
 
   def visibility
-    @visibility ||= Visibility.new
+    @visibility ||= Visibility.new timer
   end
 
   def width

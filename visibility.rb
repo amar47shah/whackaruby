@@ -1,11 +1,12 @@
 class Visibility
-  def initialize
+  def initialize timer
+    @timer = timer
     @high = 30
     @low = -10
   end
 
   def on?
-    ticker > 0
+    timer.finished? || ticker > 0
   end
 
   def update
@@ -21,7 +22,7 @@ class Visibility
 
   private
 
-  attr_reader :high, :low
+  attr_reader :timer, :high, :low
   attr_writer :ticker
 
   def low?

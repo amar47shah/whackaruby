@@ -40,7 +40,7 @@ class Game
   end
 
   def ruby
-    @ruby ||= Ruby.new window
+    @ruby ||= Ruby.new window, timer
   end
 
   def score
