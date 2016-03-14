@@ -23,6 +23,14 @@ class Window < Gosu::Window
     0
   end
 
+  def center_x
+    (upper_x - lower_x) / 2
+  end
+
+  def center_y
+    (upper_y - lower_y) / 2
+  end
+
   def upper_x
     width
   end
@@ -34,6 +42,7 @@ class Window < Gosu::Window
   private
 
   def button_down id
+    return if timer.finished?
     return unless id == Gosu::MsLeft
     score.adjust hit?
     hammer.swing hit?
