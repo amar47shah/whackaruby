@@ -61,13 +61,17 @@ class Window < Gosu::Window
     @font ||= Gosu::Font.new 30
   end
 
+  def hammer
+    @hammer ||= Hammer.new self
+  end
+
   def hit?
     distance = ruby.distance mouse_x, mouse_y
     distance < 50
   end
 
-  def hammer
-    @hammer ||= Hammer.new self
+  def height
+    600
   end
 
   def ruby
@@ -76,10 +80,6 @@ class Window < Gosu::Window
 
   def update
     ruby.update
-  end
-
-  def height
-    600
   end
 
   def width

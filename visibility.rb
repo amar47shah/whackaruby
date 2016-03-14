@@ -28,11 +28,11 @@ class Visibility
     ticker < low
   end
 
-  def reset_ticker
-    self.ticker = high
-  end
-
   def lucky?
     rand < 0.05
+  end
+
+  def reset_ticker
+    self.ticker = high
   end
 end

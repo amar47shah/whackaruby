@@ -9,13 +9,13 @@ class Ruby < Gosu::Image
     @window = window
   end
 
+  def distance other_x, other_y
+    Gosu.distance other_x, other_y, x.point, y.point
+  end
+
   def draw
     return unless visibility.on?
     super x.lower_position, y.lower_position, 1
-  end
-
-  def distance other_x, other_y
-    Gosu.distance other_x, other_y, x.point, y.point
   end
 
   def update
@@ -26,24 +26,12 @@ class Ruby < Gosu::Image
 
   attr_reader :window
 
-  def visibility
-    @visibility ||= Visibility.new
-  end
-
-  def x
-    @x ||= Bounce.new initial_x_position, initial_speed
-  end
-
-  def y
-    @y ||= Bounce.new initial_y_position, initial_speed
-  end
-
   def height
     43
   end
 
-  def width
-    50
+  def initial_speed
+    5
   end
 
   def initial_x_position
@@ -54,7 +42,19 @@ class Ruby < Gosu::Image
     Position.new 200, height, 0.5, window.lower_y, window.upper_y
   end
 
-  def initial_speed
-    5
+  def visibility
+    @visibility ||= Visibility.new
+  end
+
+  def width
+    50
+  end
+
+  def x
+    @x ||= Bounce.new initial_x_position, initial_speed
+  end
+
+  def y
+    @y ||= Bounce.new initial_y_position, initial_speed
   end
 end

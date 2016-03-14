@@ -17,12 +17,12 @@ class Position
     point - range * proportion
   end
 
-  def upper
-    point + range * (1 - proportion)
-  end
-
   def out_of_bounds?
     lower < lower_bound || upper > upper_bound
+  end
+
+  def upper
+    point + range * (1 - proportion)
   end
 
   private
