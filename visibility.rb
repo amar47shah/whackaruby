@@ -33,6 +33,6 @@ class Visibility
   end
 
   def lucky?
-    rand < 0.01
+    rand < 0.05
   end
 end
