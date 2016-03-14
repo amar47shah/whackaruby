@@ -1,8 +1,5 @@
 require 'gosu'
-require_relative './hammer'
-require_relative './ruby'
-require_relative './score'
-require_relative './timer'
+require_relative './game'
 
 class Window < Gosu::Window
   def initialize
@@ -42,43 +39,23 @@ class Window < Gosu::Window
   private
 
   def button_down id
-    return if timer.finished?
-    return unless id == Gosu::MsLeft
-    score.adjust hit?
-    hammer.swing hit?
+    game.handle_click if id == Gosu::MsLeft
   end
 
   def draw
-    [hammer, ruby, score, timer].each(&:draw)
+    game.draw
   end
 
-  def hammer
-    @hammer ||= Hammer.new self
-  end
-
-  def hit?
-    distance = ruby.distance mouse_x, mouse_y
-    distance < 50
+  def game
+    @game ||= Game.new self
   end
 
   def height
     600
   end
 
-  def ruby
-    @ruby ||= Ruby.new self
-  end
-
-  def score
-    @score ||= Score.new self
-  end
-
-  def timer
-    @timer ||= Timer.new self
-  end
-
   def update
-    ruby.update
+    game.update
   end
 
   def width
