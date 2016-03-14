@@ -6,6 +6,7 @@ class Window < Gosu::Window
   def initialize
     super width, height
     self.caption = 'Whack the Ruby!'
+    @score = 0
   end
 
   def burst color
@@ -29,15 +30,35 @@ class Window < Gosu::Window
     height
   end
 
+  protected
+
+  attr_reader :score
+
   private
+
+  attr_writer :score
+
+  def adjust_score hit
+    self.score += hit ? 5 : -1
+  end
 
   def button_down id
     return unless id == Gosu::MsLeft
+    adjust_score hit?
     hammer.swing hit?
+  end
+
+  def display_score
+    font.draw "#{score}", upper_x - 100, lower_y + 20, 2
   end
 
   def draw
     [hammer, ruby].each(&:draw)
+    display_score
+  end
+
+  def font
+    @font ||= Gosu::Font.new 30
   end
 
   def hit?
