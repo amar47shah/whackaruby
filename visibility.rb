@@ -2,7 +2,7 @@ class Visibility
   def initialize timer
     @timer = timer
     @high = 30
-    @low = -10
+    @low = -5
   end
 
   def on?

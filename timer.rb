@@ -25,7 +25,7 @@ class Timer
   attr_reader :window, :start
 
   def allowed
-    100
+    30
   end
 
   def draw_counter
