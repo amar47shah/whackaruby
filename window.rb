@@ -1,5 +1,4 @@
 require 'gosu'
-require_relative './click'
 require_relative './hammer'
 require_relative './ruby'
 
@@ -7,7 +6,11 @@ class Window < Gosu::Window
   def initialize
     super width, height
     self.caption = 'Whack the Ruby!'
-    reset_click
+  end
+
+  def flash color
+    draw_quad lower_x, lower_y, color, upper_x, lower_y, color,
+              upper_x, upper_y, color, lower_x, upper_y, color
   end
 
   def lower_x
@@ -32,23 +35,11 @@ class Window < Gosu::Window
 
   def button_down id
     return unless id == Gosu::MsLeft
-    self.click = Click.new hit?
+    hammer.register hit?
   end
 
   def draw
     [hammer, ruby].each(&:draw)
-    handle_click
-  end
-
-  def handle_click
-    color = click.color
-    draw_quad lower_x, lower_y, color, upper_x, lower_y, color,
-              upper_x, upper_y, color, lower_x, upper_y, color
-    reset_click
-  end
-
-  def reset_click
-    self.click = Click.new nil
   end
 
   def hit?
