@@ -1,4 +1,5 @@
 require 'gosu'
+require_relative './flash'
 require_relative './hammer'
 require_relative './ruby'
 require_relative './score'
@@ -10,13 +11,13 @@ class Game
   end
 
   def draw
-    [hammer, ruby, score, timer].each(&:draw)
+    [flash, hammer, ruby, score, timer].each(&:draw)
   end
 
   def handle_click
     return if finished?
     score.adjust hit?
-    hammer.swing hit?
+    flash.receive hit?
   end
 
   def handle_space
@@ -34,6 +35,10 @@ class Game
 
   def finished?
     timer.finished?
+  end
+
+  def flash
+    @flash ||= Flash.new window
   end
 
   def hammer
